@@ -66,7 +66,6 @@ typedef struct s_data
 	int				move;
 
 	char 		**maps;
-	char		**error;
 }				t_data;
 
 void	dimension_maps(t_data *data);

@@ -23,46 +23,31 @@ int		verif_move_ennemy(t_data *data, int coord[2], int dir[2])
 void	ft_put_ennemy(t_data *data, int coord[2], int dir[2])
 {
 	static int	i;
-	//int	time;
 
-	if (verif_move_ennemy(data, coord, dir) == 1 && ++i/35)
+	if (++i/5)
 	{
-		i = 0;
-		data->maps[coord[0]][coord[1]] = '0';
-		data->maps[coord[0] + dir[0]][coord[1] + dir[1]] = 'M';
-		mlx_put_image_to_window(data->mlx, data->win,\
-			data->sprites.floor, 32*coord[1], 32*coord[0]);
+		data->maps[coord[0]][coord[1]] = 'M';
 		if (data->cpt_frame_ene >= 4)
 			data->cpt_frame_ene = 0;
 		mlx_put_image_to_window(data->mlx, data->win,\
 		data->frame_ene[data->cpt_frame_ene],\
-		32*(coord[1] + dir[1]), 32 * (coord[0] + dir[0]));
+		32*(coord[1]), 32 * (coord[0]));
 		data->cpt_frame_ene++;
-		// data->maps[coord[0]][coord[1]] = '0';s
-		// data->maps[coord[0] + dir[0]][coord[1] + dir[1]] = 'M';
-		// mlx_put_image_to_window(data->mlx, data->win,
-		// data->sprites.floor, 32*coord[1], 32*coord[0]);
-		// mlx_put_image_to_window(data->mlx,data->win, data->sprites.ennemy,
-		// 32*(coord[1] + dir[1]), 32 * (coord[0] + dir[0]));
-		if (data->maps[data->cha_pos_x][data->cha_pos_y] == 'M')
-			you_are_dead(data);
+		if (verif_move_ennemy(data, coord, dir) == 1 && ++i/25)
+		{
+			i = 0;
+			data->maps[coord[0]][coord[1]] = '0';
+			data->maps[coord[0] + dir[0]][coord[1] + dir[1]] = 'M';
+			mlx_put_image_to_window(data->mlx, data->win,\
+			data->sprites.ennemy, 32*(coord[1] + dir[1]), 32*(coord[0] + dir[0]));
+			mlx_put_image_to_window(data->mlx, data->win,\
+			data->sprites.floor, 32*coord[1], 32*coord[0]);
+			if (data->maps[data->cha_pos_x][data->cha_pos_y] == 'M')
+				you_are_dead(data);
+		}
 	}
+	
 }
-
-// void	frame_ennemy(t_data *data, int coord[2], int dir[2])
-// {
-// 	static int i;
-
-// 	if (++i/35)
-// 	{
-// 		i = 0;
-// 		mlx_put_image_to_window(data->mlx, data->win, data->frame_ene[data->cpt_frame_ene],
-// 		32*(coord[1] + dir[1]), 32 * (coord[0] + dir[0]));
-// 		data->cpt_frame_ene++;
-// 		if (data->cpt_frame_ene >= 3)
-// 			data->cpt_frame_ene = 0;
-// 	}
-// }
 
 void	move_ennemy(t_data *data, int coord[2], int dir[2])
 {

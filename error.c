@@ -101,8 +101,7 @@ int    error_maps(t_data *data)
         ft_exit_error(data));
     if ((data->mapx + data->mapy - 2) * 2 != verif_ext_wall(data, x, y))
     {
-        //ft_printf("Error\n/* Incorrect placement of walls */\n\n");
-        error_message(data, "Incorrect placement of walls");
+        ft_printf("Error\n/* Incorrect placement of walls */\n\n");
         return (ft_exit_error(data));
     }
     return (0);
