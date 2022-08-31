@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luserbu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: luserbu <luserbu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 19:40:14 by luserbu           #+#    #+#             */
-/*   Updated: 2022/06/07 16:19:42 by luserbu          ###   ########.fr       */
+/*   Updated: 2022/07/04 12:27:32 by luserbu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*save;
 
-	buff = malloc(sizeof (char) * 2);
+	buff = malloc(sizeof(char) * 2);
 	if (!buff || fd < 0 || read(fd, buff, 0) == -1)
 		return (free(buff), NULL);
 	str = malloc(1);
@@ -35,7 +35,8 @@ char	*get_next_line(int fd)
 	}
 	str = ft_find_backslash_n(fd, str, buff);
 	line = ft_substr_gnl(str, 0, ft_strlen_n(str));
-	save = ft_substr_gnl(str, ft_strlen_n(str), (int)ft_strlen(str) - ft_strlen_n(str));
+	save = ft_substr_gnl(str, ft_strlen_n(str), (int)ft_strlen(str)
+			- ft_strlen_n(str));
 	return (free(buff), free(str), line);
 }
 

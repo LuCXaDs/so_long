@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luserbu <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: luserbu <luserbu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:29:22 by luserbu           #+#    #+#             */
-/*   Updated: 2022/06/07 15:42:58 by luserbu          ###   ########.fr       */
+/*   Updated: 2022/08/31 14:30:09 by luserbu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define LIBFT_H
 
 # include <stddef.h>
-# include <string.h>
-# include <stdio.h>
-# include <strings.h>
 # include <stdlib.h>
+# include <string.h>
+# include <strings.h>
 # include <unistd.h>
+
 // GET_NEXT_LINE
-char		*get_next_line(int fd);
-char		*last_tab(const char *s, unsigned int start, size_t len, char *str);
+char	*get_next_line(int fd);
+char	*last_tab(const char *s, unsigned int start, size_t len, char *str);
 size_t	ft_strlcpy_gnl(char *dst, const char *src, size_t size);
 size_t	ft_strlcat_gnl(char *dst, const char *src, size_t size);
 char	*ft_strjoin_gnl(char const *s1, char const *s2);
@@ -57,7 +57,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);

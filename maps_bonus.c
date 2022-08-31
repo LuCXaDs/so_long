@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps.c                                             :+:      :+:    :+:   */
+/*   maps_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luserbu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 19:31:30 by luserbu           #+#    #+#             */
-/*   Updated: 2022/07/25 16:54:31 by luserbu          ###   ########.fr       */
+/*   Updated: 2022/07/25 16:55:30 by luserbu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <stdio.h>
+#include "so_long_bonus.h"
 
 void	dimension_maps(t_data *data)
 {
@@ -45,7 +44,7 @@ void	parsing(t_data *data)
 	y = 0;
 	i = 0;
 	fd = open(data->name_maps, O_RDONLY);
-	data->maps = ft_calloc(sizeof (char *), data->mapy + 1);
+	data->maps = ft_calloc(sizeof (char *), (size_t)data->mapy + 1);
 	while (i < data->mapx)
 	{
 		data->maps[y] = get_next_line(fd);
@@ -82,5 +81,5 @@ void	collect_and_close(t_data *data)
 	}
 	if (coin == 0)
 		if (data->maps[data->cha_pos_x][data->cha_pos_y] == 'E')
-			ft_close(data);
+			win_or_lose(data, 1);
 }
