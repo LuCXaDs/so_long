@@ -6,7 +6,7 @@
 #    By: luserbu <luserbu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 11:47:32 by luserbu           #+#    #+#              #
-#    Updated: 2022/08/24 15:07:01 by luserbu          ###   ########.fr        #
+#    Updated: 2022/09/04 20:00:28 by luserbu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,21 +19,28 @@ SRCS	=	main.c \
 			error.c \
 			exit.c \
 			maps.c \
-			put_maps.c
+			put_maps.c \
+			check_path.c \
+			criss_cross.c \
+			loop_path.c
 
-SRCS_B	=	main_bonus.c \
-			character_bonus.c \
-			define_bonus.c \
-			error_bonus.c \
-			exit_bonus.c \
-			maps_bonus.c \
-			ennemy_bonus.c \
-			put_maps_bonus.c
+SRCS_B	=	bonus/main_bonus.c \
+			bonus/character_bonus.c \
+			bonus/define_bonus.c \
+			bonus/error_bonus.c \
+			bonus/exit_bonus.c \
+			bonus/maps_bonus.c \
+			bonus/ennemy_bonus.c \
+			bonus/put_maps_bonus.c \
+			bonus/check_path_bonus.c \
+			bonus/criss_cross_bonus.c \
+			bonus/loop_path_bonus.c \
+			bonus/exit_path_bonus.c
 			
 
 OBJS	= $(SRCS:.c=.o)
 BONUS	= $(SRCS_B:.c=.o)
-CC	 	= gcc
+CC	 	= gcc -g
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 

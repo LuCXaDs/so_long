@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luserbu <luserbu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luserbu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:01:15 by luserbu           #+#    #+#             */
-/*   Updated: 2022/09/04 14:58:09 by luserbu          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:01:15 by luserbu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	verif_ext_wall(t_data *data, int x, int y)
 {
@@ -32,8 +32,6 @@ void	loop_error_maps(t_data *data, int x, int y)
 		data->play += 1;
 	else if (data->maps[x][y] == 'E')
 		data->ext += 1;
-	else if (data->maps[x][y] == 'C')
-		data->verif_coin++;
 	else if (data->maps[x][y] == '1')
 		verif_ext_wall(data, x, y);
 }
@@ -45,9 +43,9 @@ void	print_error(t_data *data, int error, int x, int y)
 	if (error == 0 && (data->mapx + data->mapy - 2) * 2 \
 	!= verif_ext_wall(data, x, y))
 		ft_printf("Error\n/* Incorrect placement of walls */\n");
-	if (data->play != 1)
+	if (error == 1 || data->play == 0 || data->play >= 2)
 		ft_printf("Error\n/* Impossible to play with many or none PLAYER */\n");
-	if (data->ext != 1)
+	if (error == 2 || data->ext == 0 || data->ext >= 2)
 		ft_printf("Error\n/* Impossible to play with many or none EXIT */\n");
 	if (error == 3)
 		ft_printf("Error\n/* Wrong argument ! */\n");
@@ -55,14 +53,14 @@ void	print_error(t_data *data, int error, int x, int y)
 		ft_printf("Error\n/* Incorrect map size */\n");
 	if ((error == 0 && data->verif_coin == 0) || (error == 0 \
 	&& (data->mapx + data->mapy - 2) * 2 != verif_ext_wall(data, x, y)) \
-	|| data->play != 1 || data->ext != 1 \
-	|| error == 3 || error == 4)
+	|| error == 1 || data->play == 0 || data->play >= 2 || error == 2 \
+	|| data->ext == 0 || data->ext >= 2 || error == 3 || error == 4)
 		ft_exit_error(data);
 }
 
 void	verif_letter_line(t_data *data, char c)
 {
-	if (c == '1' || c == '0' || c == 'C' || c == 'E' || c == 'P' \
+	if (c == '1' || c == '0' || c == 'C' || c == 'E' || c == 'P' || c == 'M'
 		|| c == '\n')
 		return ;
 	else
@@ -85,6 +83,8 @@ void	error_maps(t_data *data)
 			{
 				loop_error_maps(data, x, y);
 				verif_letter_line(data, data->maps[x][y]);
+				if (data->maps[x][y] == 'C')
+					data->verif_coin++;
 				y++;
 			}
 		}
